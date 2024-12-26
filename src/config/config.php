@@ -5,7 +5,7 @@ return [
     'accounts'   => [
         'name' => [
             'url'  => 'https://connect.lhv.eu',
-            'cert' => [ // Your pivate key + LHV public certificate is combined into one file
+            'cert' => [ // Your private key + LHV public certificate is combined into one file
                 'path'     => '',
                 'password' => '',
             ],
@@ -15,7 +15,7 @@ return [
         ],
         'name2' => [
             'url'  => 'https://connect.lhv.eu',
-            'cert' => [ // Your pivate key + LHV public certificate is combined into one file
+            'cert' => [ // Your private key + LHV public certificate is combined into one file
                 'path'     => '',
                 'password' => '',
             ],
@@ -27,7 +27,7 @@ return [
                 'path'     => '',
                 'password' => '',
             ],
-            'ssl_key' => [ // Your pivate key (private.key / priv.pem / ...)
+            'ssl_key' => [ // Your private key (private.key / priv.pem / ...)
                 'path'     => '',
                 'password' => '',
             ],
