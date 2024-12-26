@@ -31,7 +31,7 @@ class LhvConnectTest extends TestCase
         /**
          * The response from the bank.
          */
-        date_default_timezone_set('Europe/Istanbul');
+        date_default_timezone_set('Europe/Tallinn');
         $dateTime = (new DateTime())->format(DateTime::ISO8601);
         $xmlResponse = '<HeartBeatResponse>
             <TimeStamp>' . $dateTime . '</TimeStamp>

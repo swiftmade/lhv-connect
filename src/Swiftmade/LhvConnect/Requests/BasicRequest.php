@@ -16,7 +16,7 @@ abstract class BasicRequest
 
     public function __construct(Client $client, $configuration, $body = null, $headers = [])
     {
-        date_default_timezone_set('Europe/Istanbul');
+        date_default_timezone_set('Europe/Tallinn');
         $this->client = $client;
         $this->configuration = $configuration;
         $this->headers = $headers;
