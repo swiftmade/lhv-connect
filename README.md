@@ -15,7 +15,7 @@ Supported Laravel versions:
 
     $ composer require swiftmade/lhv-connect
 
-NB! Service provider Swiftmade\LhvConnect\LaravelLhvConnectServiceProvider::class is automatically registered.
+NB! Service provider Swiftmade\LhvConnect\LhvConnectServiceProvider::class is automatically registered.
 
 In terminal run
 

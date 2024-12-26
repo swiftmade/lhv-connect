@@ -2,38 +2,38 @@
 
 return [
     'tmp_folder' => '/tmp',
-    'accounts'   => [
+    'accounts' => [
         'name' => [
-            'url'  => 'https://connect.lhv.eu',
-            'cert' => [ // Your pivate key + LHV public certificate is combined into one file
-                'path'     => '',
+            'url' => 'https://connect.lhv.eu',
+            'cert' => [ // Your private key + LHV public certificate is combined into one file
+                'path' => '',
                 'password' => '',
             ],
             'IBAN' => '',
             'name' => '',
-            'bic'  => 'LHVBEE22',
+            'bic' => 'LHVBEE22',
         ],
         'name2' => [
-            'url'  => 'https://connect.lhv.eu',
-            'cert' => [ // Your pivate key + LHV public certificate is combined into one file
-                'path'     => '',
+            'url' => 'https://connect.lhv.eu',
+            'cert' => [ // Your private key + LHV public certificate is combined into one file
+                'path' => '',
                 'password' => '',
             ],
             'IBAN' => '',
         ],
         'name3' => [
-            'url'  => 'https://connect.lhv.eu',
+            'url' => 'https://connect.lhv.eu',
             'cert' => [ // LHV public certificate (lhv_public.crt / lhv_public.pem / ...)
-                'path'     => '',
+                'path' => '',
                 'password' => '',
             ],
-            'ssl_key' => [ // Your pivate key (private.key / priv.pem / ...)
-                'path'     => '',
+            'ssl_key' => [ // Your private key (private.key / priv.pem / ...)
+                'path' => '',
                 'password' => '',
             ],
             'IBAN' => '',
             'name' => '',
-            'bic'  => 'LHVBEE22',
+            'bic' => 'LHVBEE22',
         ],
     ],
 

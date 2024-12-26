@@ -3,9 +3,9 @@
 namespace Swiftmade\LhvConnect;
 
 use DateTime;
+use SimpleXMLElement;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use SimpleXMLElement;
 
 class XMLGenerator
 {
@@ -71,10 +71,10 @@ xsi:schemaLocation=\"urn:iso:std:iso:20022:tech:xsd:pain.001.001.03 pain.001.001
         $xml = [
             'PAYMENT_INFORMATION' => [
                 'PAYMENT_INFORMATION_IDENTIFICATION' => $payment['id'],
-                'PAYMENT_METHOD'                     => 'TRF',
-                'INNER_NUMBER_OF_TRANSACTIONS'       => 1,
-                'REQUESTED_EXECUTION_DATE'           => (new DateTime())->format('Y-m-d'),
-                'REMITTER'                           => [
+                'PAYMENT_METHOD' => 'TRF',
+                'INNER_NUMBER_OF_TRANSACTIONS' => 1,
+                'REQUESTED_EXECUTION_DATE' => (new DateTime())->format('Y-m-d'),
+                'REMITTER' => [
                     'REMITTER_NAME' => $configuration['name'],
                 ],
                 'REMITTER_ACCOUNT' => [
@@ -88,7 +88,7 @@ xsi:schemaLocation=\"urn:iso:std:iso:20022:tech:xsd:pain.001.001.03 pain.001.001
                         'BIC' => $configuration['bic'],
                     ],
                 ],
-                'CHARGES_BEARER'                          => 'DEBT',
+                'CHARGES_BEARER' => 'DEBT',
                 'CREDIT_TRANSFER_TRANSACTION_INFORMATION' => [
                     'PAYMENT_IDENTIFICATION' => [
                         'END_TO_END_IDENTIFICATION' => rand(100000, 999999),
@@ -102,7 +102,7 @@ xsi:schemaLocation=\"urn:iso:std:iso:20022:tech:xsd:pain.001.001.03 pain.001.001
                         'INSTRUCTED_AMOUNT' => $payment['sum'],
                     ],
                     'CHARGES_BEARER' => 'DEBT',
-                    'BENEFICIARY'    => [
+                    'BENEFICIARY' => [
                         'BENEFICIARY_NAME' => $payment['name'],
                     ],
                     'BENEFICIARY_ACCOUNT' => [
@@ -132,11 +132,11 @@ xsi:schemaLocation=\"urn:iso:std:iso:20022:tech:xsd:pain.001.001.03 pain.001.001
     {
         return [
             'GROUP_HEADER' => [
-                'MESSAGE_IDENTIFICATION'    => Str::random(16),
-                'CREATION_DATETIME'         => (new DateTime())->format(DateTime::ATOM),
-                'NUMBER_OF_TRANSACTIONS'    => $count,
-                'CONTROL_SUM'               => $sum,
-                'INITIATING_PARTY'          => [
+                'MESSAGE_IDENTIFICATION' => Str::random(16),
+                'CREATION_DATETIME' => (new DateTime())->format(DateTime::ATOM),
+                'NUMBER_OF_TRANSACTIONS' => $count,
+                'CONTROL_SUM' => $sum,
+                'INITIATING_PARTY' => [
                     'NAME' => $initiator,
                 ],
             ],
