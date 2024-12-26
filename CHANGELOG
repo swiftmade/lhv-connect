@@ -1,0 +1,11 @@
+2024-12-26  Swiftmade OÜ
+
+    Breaking changes:
+    * Minimum PHP version is now 7.4.
+    * Renamed `LaravelLhvConnectServiceProvider` to `LhvConnectServiceProvider`.
+    
+    Other changes:
+    * Removed `date_default_timezone_set` to prevent unexpected behavior.
+    * Support added for Laravel 7, 8, 9, 10 and 11.
+    * Renamed namespaces and classes to match the new package name.
+    * Package cloned from https://github.com/mihkelallorg
