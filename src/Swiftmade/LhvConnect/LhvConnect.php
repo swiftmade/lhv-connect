@@ -3,11 +3,11 @@
 namespace Swiftmade\LhvConnect;
 
 use GuzzleHttp\Client;
-use Swiftmade\LhvConnect\Requests\DeleteMessageInInbox;
+use Psr\Http\Message\ResponseInterface;
 use Swiftmade\LhvConnect\Requests\HeartbeatGetRequest;
+use Swiftmade\LhvConnect\Requests\DeleteMessageInInbox;
 use Swiftmade\LhvConnect\Requests\PaymentInitiationRequest;
 use Swiftmade\LhvConnect\Requests\RetrieveMessageFromInbox;
-use Psr\Http\Message\ResponseInterface;
 
 class LhvConnect
 {
@@ -52,7 +52,7 @@ class LhvConnect
         while (true) {
             $message = $this->makeRetrieveMessageFromInboxRequest();
 
-            if (!isset($message->getHeaders()['Content-Length']) || $message->getHeader('Content-Length')[0] == 0) {
+            if (! isset($message->getHeaders()['Content-Length']) || $message->getHeader('Content-Length')[0] == 0) {
                 break;
             }
 

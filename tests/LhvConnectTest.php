@@ -5,15 +5,15 @@ namespace Swiftmade\LhvConnect\Tests;
 use DateTime;
 use Exception;
 use GuzzleHttp\Client;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
-use GuzzleHttp\Psr7\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
+use GuzzleHttp\Handler\MockHandler;
 use Swiftmade\LhvConnect\LhvConnect;
 use Swiftmade\LhvConnect\Requests\HeartbeatGetRequest;
-use PHPUnit\Framework\TestCase;
 
 class LhvConnectTest extends TestCase
 {
@@ -24,7 +24,7 @@ class LhvConnectTest extends TestCase
     {
         $conf = [
             'IBAN' => '',
-            'url'  => 'https://connect.lhv.eu',
+            'url' => 'https://connect.lhv.eu',
             'cert' => ['path' => __DIR__ . '/test_cert.p12', 'password' => 'password'],
         ];
 
@@ -81,7 +81,7 @@ class LhvConnectTest extends TestCase
     {
         $conf = [
             'IBAN' => '',
-            'url'  => 'https://connect.lhv.eu',
+            'url' => 'https://connect.lhv.eu',
             'cert' => ['path' => __DIR__ . '/test_cert.p12', 'password' => 'password'],
         ];
 
@@ -113,32 +113,32 @@ class LhvConnectTest extends TestCase
     public function it_test_a_correct_payment_initiation_request()
     {
         $conf = [
-            'IBAN'      => 'EE1955501215926523',
-            'name'      => 'Hendrik Ilves Toomas',
-            'url'       => 'https://connect.lhv.eu',
-            'cert'      => ['path' => __DIR__ . '/test_cert.p12', 'password' => 'password'],
-            'bic'       => 'LHVBEE22',
+            'IBAN' => 'EE1955501215926523',
+            'name' => 'Hendrik Ilves Toomas',
+            'url' => 'https://connect.lhv.eu',
+            'cert' => ['path' => __DIR__ . '/test_cert.p12', 'password' => 'password'],
+            'bic' => 'LHVBEE22',
             'initiator' => 'TestUser',
         ];
 
         $payments = [
             [
-                'id'            => 1,
-                'currency'      => 'EUR',
-                'sum'           => rand(1, 250),
-                'name'          => Str::random(),
-                'IBAN'          => Str::random(),
-                'description'   => Str::random(),
-                'ref_nr'        => Str::random(),
+                'id' => 1,
+                'currency' => 'EUR',
+                'sum' => rand(1, 250),
+                'name' => Str::random(),
+                'IBAN' => Str::random(),
+                'description' => Str::random(),
+                'ref_nr' => Str::random(),
             ],
             [
-                'id'            => 2,
-                'currency'      => 'EUR',
-                'sum'           => rand(1, 250),
-                'name'          => Str::random(),
-                'IBAN'          => Str::random(),
-                'description'   => Str::random(),
-                'ref_nr'        => Str::random(),
+                'id' => 2,
+                'currency' => 'EUR',
+                'sum' => rand(1, 250),
+                'name' => Str::random(),
+                'IBAN' => Str::random(),
+                'description' => Str::random(),
+                'ref_nr' => Str::random(),
             ],
         ];
 

@@ -44,11 +44,11 @@ abstract class BasicRequest
                 $this->configuration['cert']['path'],
                 $this->configuration['cert']['password'],
             ],
-            RequestOptions::BODY    => $this->body,
+            RequestOptions::BODY => $this->body,
             RequestOptions::HEADERS => $this->headers,
         ];
 
-        if (!empty($this->configuration['ssl_key']['path'])) {
+        if (! empty($this->configuration['ssl_key']['path'])) {
             $options[RequestOptions::SSL_KEY] = [
                 $this->configuration['ssl_key']['path'],
                 $this->configuration['ssl_key']['password'],
