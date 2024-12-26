@@ -1,7 +1,15 @@
 # LHV CONNECT API package for Laravel
 
+This package is a Laravel wrapper for the LHV Connect API.
 
-Supported Laravel versions: 5.5, 5.6, 5.7, 5.8, 6.0, 7.0, 8.0
+LHV Connect:
+ - [https://www.lhv.ee/en/connect](https://www.lhv.ee/en/connect)
+
+Supported PHP versions: 
+  - PHP 7.4+ or PHP 8.0+
+
+Supported Laravel versions:
+  - Laravel 7.x, 8.x, 9.x, 10.x, 11.x
 
 ## Quickstart
 
