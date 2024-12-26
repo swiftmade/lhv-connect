@@ -1,8 +1,8 @@
 <?php
 
-namespace Mihkullorg\LhvConnect\Requests;
+namespace Swiftmade\LhvConnect\Requests;
 
-use Mihkullorg\LhvConnect\XMLGenerator;
+use Swiftmade\LhvConnect\XMLGenerator;
 
 class PaymentInitiationRequest extends FullRequest
 {

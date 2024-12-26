@@ -1,6 +1,6 @@
 <?php
 
-namespace Mihkullorg\LhvConnect;
+namespace Swiftmade\LhvConnect;
 
 class Tag
 {

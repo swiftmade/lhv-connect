@@ -1,6 +1,6 @@
 <?php
 
-namespace Mihkullorg\LhvConnect;
+namespace Swiftmade\LhvConnect;
 
 use DateTime;
 use Illuminate\Support\Arr;
@@ -19,10 +19,10 @@ class XMLGenerator
     {
         foreach ($data as $key => $value) {
             if (is_array($value)) {
-                $subnode = $xml_data->addChild(constant("Mihkullorg\\LhvConnect\\Tag::$key"));
+                $subnode = $xml_data->addChild(constant("Swiftmade\\LhvConnect\\Tag::$key"));
                 self::array_to_xml($value, $subnode);
             } else {
-                $key = constant("Mihkullorg\\LhvConnect\\Tag::$key");
+                $key = constant("Swiftmade\\LhvConnect\\Tag::$key");
                 $xml_data->addChild($key, $value);
 
                 /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace Mihkullorg\LhvConnect\Tests;
+namespace Swiftmade\LhvConnect\Tests;
 
 use DateTime;
 use Exception;
@@ -11,8 +11,8 @@ use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Mihkullorg\LhvConnect\LhvConnect;
-use Mihkullorg\LhvConnect\Requests\HeartbeatGetRequest;
+use Swiftmade\LhvConnect\LhvConnect;
+use Swiftmade\LhvConnect\Requests\HeartbeatGetRequest;
 use PHPUnit\Framework\TestCase;
 
 class LhvConnectTest extends TestCase
@@ -25,7 +25,7 @@ class LhvConnectTest extends TestCase
         $conf = [
             'IBAN' => '',
             'url'  => 'https://connect.lhv.eu',
-            'cert' => ['path' => __DIR__.'/test_cert.p12', 'password' => 'password'],
+            'cert' => ['path' => __DIR__ . '/test_cert.p12', 'password' => 'password'],
         ];
 
         /**
@@ -34,7 +34,7 @@ class LhvConnectTest extends TestCase
         date_default_timezone_set('Europe/Istanbul');
         $dateTime = (new DateTime())->format(DateTime::ISO8601);
         $xmlResponse = '<HeartBeatResponse>
-            <TimeStamp>'.$dateTime.'</TimeStamp>
+            <TimeStamp>' . $dateTime . '</TimeStamp>
         </HeartBeatResponse>';
 
         /**
@@ -82,7 +82,7 @@ class LhvConnectTest extends TestCase
         $conf = [
             'IBAN' => '',
             'url'  => 'https://connect.lhv.eu',
-            'cert' => ['path' => __DIR__.'/test_cert.p12', 'password' => 'password'],
+            'cert' => ['path' => __DIR__ . '/test_cert.p12', 'password' => 'password'],
         ];
 
         $retrievedRequests = [];
@@ -116,7 +116,7 @@ class LhvConnectTest extends TestCase
             'IBAN'      => 'EE1955501215926523',
             'name'      => 'Hendrik Ilves Toomas',
             'url'       => 'https://connect.lhv.eu',
-            'cert'      => ['path' => __DIR__.'/test_cert.p12', 'password' => 'password'],
+            'cert'      => ['path' => __DIR__ . '/test_cert.p12', 'password' => 'password'],
             'bic'       => 'LHVBEE22',
             'initiator' => 'TestUser',
         ];
@@ -179,28 +179,28 @@ pain.001.001.03.xsd">
             <CstmrCdtTrfInitn>
                 <GrpHdr>
                     <MsgId>TestID</MsgId>
-                    <CreDtTm>'.(new DateTime())->format(DateTime::ATOM).'</CreDtTm>
-                    <NbOfTxs>'.count($payments).'</NbOfTxs>
-                    <CtrlSum>'.$sum.'</CtrlSum>
+                    <CreDtTm>' . (new DateTime())->format(DateTime::ATOM) . '</CreDtTm>
+                    <NbOfTxs>' . count($payments) . '</NbOfTxs>
+                    <CtrlSum>' . $sum . '</CtrlSum>
                     <InitgPty>
-                        <Nm>'.$conf['initiator'].'</Nm>
+                        <Nm>' . $conf['initiator'] . '</Nm>
                     </InitgPty>
                 </GrpHdr>
         ';
 
         foreach ($payments as $p) {
             $xml .= '<PmtInf>
-                <PmtInfId>'.$p['id'].'</PmtInfId>
+                <PmtInfId>' . $p['id'] . '</PmtInfId>
                 <PmtMtd>TRF</PmtMtd>
                 <BtchBookg>false</BtchBookg>
                 <NbOfTxs>1</NbOfTxs>
-                <ReqdExctnDt>'.(new DateTime())->format('Y-m-d').'</ReqdExctnDt>
+                <ReqdExctnDt>' . (new DateTime())->format('Y-m-d') . '</ReqdExctnDt>
                 <Dbtr>
-                    <Nm>'.$conf['name'].'</Nm>
+                    <Nm>' . $conf['name'] . '</Nm>
                 </Dbtr>
                 <DbtrAcct>
                     <Id>
-                        <IBAN>'.$conf['IBAN'].'</IBAN>
+                        <IBAN>' . $conf['IBAN'] . '</IBAN>
                     </Id>
                     <Ccy>EUR</Ccy>
                 </DbtrAcct>
@@ -220,22 +220,22 @@ pain.001.001.03.xsd">
                         </LclInstrm>
                     </PmtTpInf>
                     <Amt>
-                        <InstdAmt Ccy="EUR">'.$p['sum'].'</InstdAmt>
+                        <InstdAmt Ccy="EUR">' . $p['sum'] . '</InstdAmt>
                     </Amt>
                     <ChrgBr>DEBT</ChrgBr>
                     <Cdtr>
-                        <Nm>'.$p['name'].'</Nm>
+                        <Nm>' . $p['name'] . '</Nm>
                     </Cdtr>
                     <CdtrAcct>
                         <Id>
-                            <IBAN>'.$p['IBAN'].'</IBAN>
+                            <IBAN>' . $p['IBAN'] . '</IBAN>
                         </Id>
                     </CdtrAcct>
                     <RmtInf>
-                        <Ustrd>'.$p['description'].'</Ustrd>
+                        <Ustrd>' . $p['description'] . '</Ustrd>
                         <Strd>
                             <CdtrRefInf>
-                                <Ref>'.$p['ref_nr'].'</Ref>
+                                <Ref>' . $p['ref_nr'] . '</Ref>
                             </CdtrRefInf>
                         </Strd>
                     </RmtInf>

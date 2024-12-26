@@ -1,6 +1,6 @@
 <?php
 
-namespace Mihkullorg\LhvConnect\Requests;
+namespace Swiftmade\LhvConnect\Requests;
 
 class RetrieveMessageFromInbox extends BasicRequest
 {

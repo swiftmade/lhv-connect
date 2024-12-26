@@ -1,12 +1,12 @@
 <?php
 
-namespace Mihkullorg\LhvConnect;
+namespace Swiftmade\LhvConnect;
 
 use GuzzleHttp\Client;
-use Mihkullorg\LhvConnect\Requests\DeleteMessageInInbox;
-use Mihkullorg\LhvConnect\Requests\HeartbeatGetRequest;
-use Mihkullorg\LhvConnect\Requests\PaymentInitiationRequest;
-use Mihkullorg\LhvConnect\Requests\RetrieveMessageFromInbox;
+use Swiftmade\LhvConnect\Requests\DeleteMessageInInbox;
+use Swiftmade\LhvConnect\Requests\HeartbeatGetRequest;
+use Swiftmade\LhvConnect\Requests\PaymentInitiationRequest;
+use Swiftmade\LhvConnect\Requests\RetrieveMessageFromInbox;
 use Psr\Http\Message\ResponseInterface;
 
 class LhvConnect

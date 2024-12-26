@@ -1,6 +1,6 @@
 <?php
 
-namespace Mihkullorg\LhvConnect\Requests;
+namespace Swiftmade\LhvConnect\Requests;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;

@@ -1,10 +1,13 @@
-# LHV CONNECT API package for Laravel 6
+# LHV CONNECT API package for Laravel
+
+
+Supported Laravel versions: 5.5, 5.6, 5.7, 5.8, 6.0, 7.0, 8.0
 
 ## Quickstart
 
-    $ composer require mihkullorg/lhv-connect
+    $ composer require swiftmade/lhv-connect
 
-NB! Service provider Mihkullorg\LhvConnect\LaravelLhvConnectServiceProvider::class is automatically registered.
+NB! Service provider Swiftmade\LhvConnect\LaravelLhvConnectServiceProvider::class is automatically registered.
 
 In terminal run
 
@@ -32,3 +35,10 @@ Delete the message from LHV inbox
 Retrieve all messages. This gets you all the messages but it also deletes all the messages from the inbox.
 
     $messages = $lhv->getAllMessages();
+
+---
+
+### Acknowledgements
+
+Based on original package by Mihkel Allorg released under MIT license.
+https://github.com/mihkelallorg/lhv-connect/blob/master/LICENSE
