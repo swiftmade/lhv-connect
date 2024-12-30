@@ -2,9 +2,8 @@
 
 namespace Swiftmade\LhvConnect;
 
-use GuzzleHttp\Client;
+use Illuminate\Support\Arr;
 use Psr\Http\Message\ResponseInterface;
-use Swiftmade\LhvConnect\Requests\HeartbeatGetRequest;
 use Swiftmade\LhvConnect\Requests\DeleteMessageInInbox;
 use Swiftmade\LhvConnect\Requests\PaymentInitiationRequest;
 use Swiftmade\LhvConnect\Requests\RetrieveMessageFromInbox;
@@ -16,27 +15,34 @@ class LhvConnect
 
     public function __construct(array $configuration)
     {
-        $this->configuration = $configuration;
-        $this->client = new Client([
-            'base_uri' => $this->configuration['url'],
-        ]);
+        $this->client = new LhvConnectClient($configuration);
+    }
+
+    /**
+     * account is the key of the account in the configuration file.
+     * For example, 'sandbox' or 'live'.
+     */
+    public static function make(string $account)
+    {
+        if (! Arr::has(config('lhv-connect.accounts'), $account)) {
+            throw new \Exception(
+                "$account is not a valid account in the configuration file. "
+                    . "Possible values are: "
+                    . implode(', ', array_keys(config('lhv-connect.accounts')))
+            );
+        }
+
+        return new self(config('lhv-connect.accounts')[$account]);
     }
 
     /**
      * Test request. Tests the connection to the server.
      *
-     * @return mixed|\Psr\Http\Message\ResponseInterface
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function makeHeartbeatGetRequest()
     {
-        $request = new HeartbeatGetRequest($this->client, $this->configuration);
-
-        return $request->sendRequest();
-    }
-
-    public function makeHeartbeatPostRequest()
-    {
-        //TODO
+        return $this->client->get('/heartbeat');
     }
 
     /**
@@ -75,14 +81,6 @@ class LhvConnect
     }
 
     /**
-     * @param Client $client
-     */
-    public function setClient(Client $client)
-    {
-        $this->client = $client;
-    }
-
-    /**
      * @param ResponseInterface $message
      *
      * @return ResponseInterface
@@ -90,9 +88,20 @@ class LhvConnect
     public function makeDeleteMessageInInboxRequest(ResponseInterface $message)
     {
         $id = $message->getHeader('Message-Response-Id')[0];
-        $request = new DeleteMessageInInbox($this->client, $this->configuration, null, [], $id);
+        $request = new DeleteMessageInInbox(
+            $this->client,
+            $this->configuration,
+            null,
+            [],
+            $id
+        );
 
         return $request->sendRequest();
+    }
+
+    public function makeGetAccountStatementRequest()
+    {
+        $this->client->request('POST', '/account-statement');
     }
 
     /**
@@ -102,9 +111,9 @@ class LhvConnect
      */
     public function getPaymentInitiationXML($payments)
     {
-        $request = new PaymentInitiationRequest($this->client, $this->configuration, $payments);
-
-        return $request->getXML();
+        $this->client->post('/payment-initiation', [
+            'form_params' => $payments,
+        ]);
     }
 
     /**
@@ -120,7 +129,13 @@ class LhvConnect
             'Content-Type' => 'application/vnd.etsi.asic-e+zip',
         ];
 
-        $request = new PaymentInitiationRequest($this->client, $this->configuration, [], $body, $headers);
+        $request = new PaymentInitiationRequest(
+            $this->client,
+            $this->configuration,
+            [],
+            $body,
+            $headers
+        );
 
         return $request->sendRequest();
     }
