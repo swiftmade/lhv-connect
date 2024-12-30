@@ -54,6 +54,10 @@ abstract class BasicRequest
             ];
         }
 
+        if (isset($this->configuration['verify'])) {
+            $options[RequestOptions::VERIFY] = $this->configuration['verify'];
+        }
+
         return $options;
     }
 }
