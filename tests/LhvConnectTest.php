@@ -32,7 +32,7 @@ class LhvConnectTest extends TestCase
             'handler' => $handlerStack,
         ]);
 
-        $connect->makeHeartbeatGetRequest();
+        $connect->sendHeartbeat();
 
         $this->assertEquals(
             '/heartbeat',
@@ -69,6 +69,6 @@ class LhvConnectTest extends TestCase
         ]);
 
         $this->expectException(ServerException::class);
-        $connect->makeHeartbeatGetRequest();
+        $connect->sendHeartbeat();
     }
 }
