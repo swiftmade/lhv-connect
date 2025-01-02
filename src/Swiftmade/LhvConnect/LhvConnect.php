@@ -3,10 +3,6 @@
 namespace Swiftmade\LhvConnect;
 
 use Illuminate\Support\Arr;
-use Psr\Http\Message\ResponseInterface;
-use Swiftmade\LhvConnect\Requests\DeleteMessageInInbox;
-use Swiftmade\LhvConnect\Requests\PaymentInitiationRequest;
-use Swiftmade\LhvConnect\Requests\RetrieveMessageFromInbox;
 
 class LhvConnect
 {
