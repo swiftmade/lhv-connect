@@ -7,8 +7,12 @@ use GuzzleHttp\RequestOptions;
 
 class LhvConnectClient extends Client
 {
-    public function __construct(private array $configuration)
+    private array $configuration;
+
+    public function __construct(array $configuration)
     {
+        $this->configuration = $configuration;
+
         $options = [
             'base_uri' => $this->configuration['url'],
             RequestOptions::CERT => [
