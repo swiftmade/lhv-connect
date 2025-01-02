@@ -30,8 +30,7 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.1",
-        "phpunit/phpunit": "^8.0|^9.0|^10.0|^11.0",
-        "orchestra/testbench": "5.*|6.*|7.*|8.*|9.*"
+        "phpunit/phpunit": "^8.0|^9.0|^10.0|^11.0"
     },
     "autoload": {
         "psr-4": {
@@ -40,7 +39,10 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Swiftmade\\LhvConnect\\Tests\\": "tests"
+            "Swiftmade\\LhvConnect\\Tests\\": "tests",
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
         }
     },
     "extra": {
@@ -49,5 +51,19 @@
                 "Swiftmade\\LhvConnect\\LhvConnectServiceProvider"
             ]
         }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "@build"
+        ],
+        "test": [
+            "@clear",
+            "@php vendor/bin/phpunit"
+        ]
     }
 }

@@ -21,17 +21,6 @@ jobs:
         laravel: [7.*, 8.*, 9.*, 10.*, 11.*]
         #stability: [prefer-lowest, prefer-stable]
         stability: [prefer-stable]
-        include:
-          - laravel: 7.*
-            testbench: 5.*
-          - laravel: 8.*
-            testbench: ^6.6
-          - laravel: 9.*
-            testbench: 7.*
-          - laravel: 10.*
-            testbench: 8.* 
-          - laravel: 11.*
-            testbench: 9.*
         # Laravel 7 has no support for PHP 8.1
         exclude:            
           - laravel: 7.*
@@ -74,9 +63,14 @@ jobs:
         run: |
           echo "::add-matcher::${{ runner.tool_cache }}/php.json"
           echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
+      - name: Use legacy PHPUnit configuration for PHP < 8.2
+        if: ${{ matrix.php }} != '8.2' && ${{ matrix.php }} != '8.3' 
+        run: cp phpunit.old.xml phpunit.xml
+
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
+          composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
           if [ "${{ matrix.laravel }}" = "7.*" ]; then composer require "guzzlehttp/guzzle:7.6.*" --no-interaction --no-update; fi
           composer update --${{ matrix.stability }} --prefer-dist --no-interaction
       - name: Execute tests
