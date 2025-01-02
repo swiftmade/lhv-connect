@@ -21,12 +21,6 @@ jobs:
         laravel: [7.*, 8.*, 9.*, 10.*, 11.*]
         #stability: [prefer-lowest, prefer-stable]
         stability: [prefer-stable]
-        include:
-          - laravel: 7.*
-          - laravel: 8.*
-          - laravel: 9.*
-          - laravel: 10.*
-          - laravel: 11.*
         # Laravel 7 has no support for PHP 8.1
         exclude:            
           - laravel: 7.*
@@ -69,6 +63,11 @@ jobs:
         run: |
           echo "::add-matcher::${{ runner.tool_cache }}/php.json"
           echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
+      - name: Use legacy PHPUnit configuration for PHP < 8.2
+        if: ${{ matrix.php }} != '8.2' && ${{ matrix.php }} != '8.3' 
+        run: cp phpunit.old.xml phpunit.xml
+
       - name: Install dependencies
         run: |
           composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
