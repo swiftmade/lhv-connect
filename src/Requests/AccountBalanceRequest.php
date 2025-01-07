@@ -23,7 +23,7 @@ class AccountBalanceRequest extends AbstractRequest
     {
         parent::__construct();
 
-        $this->fromDate = new DateTime('yesterday');
+        $this->fromDate = new DateTime('-1y');
         $this->toDate = new DateTime('now');
     }
 
@@ -70,6 +70,11 @@ class AccountBalanceRequest extends AbstractRequest
                             ],
                             Tag::TYPE => 'ALLL'
                         ],
+                        Tag::REQUESTED_BALANCE_TYPE => [
+                            Tag::CODE_OR_PROPRIETARY => [
+                                Tag::PROPRIETARY => 'DATE'
+                            ]
+                        ]
                     ],
                 ]
             ],

@@ -76,9 +76,11 @@ class Tag
     const REPORTING_REQUEST = 'RptgReq';
     const REQUESTED_EXECUTION_DATE = 'ReqdExctnDt';
     const REQUESTED_MESSAGE_NAME_IDENTIFICATION = 'ReqdMsgNmId';
+    const REQUESTED_BALANCE_TYPE = 'ReqdBalTp';
     const STRUCTURED = 'Strd';
     const TO_DATE = 'ToDt';
     const TO_TIME = 'ToTm';
     const TYPE = 'Tp';
     const UNSTRUCTURED = 'Ustrd';
+    const CODE_OR_PROPRIETARY = 'CdOrPrtry';
 }
