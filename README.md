@@ -56,5 +56,7 @@ The package will throw exceptions in the following cases:
 
 ### Acknowledgements
 
-Based on original package by Mihkel Allorg released under MIT license.
+This is a fork of Mihkel Allorg's package released under MIT license.
 https://github.com/mihkelallorg/lhv-connect/blob/master/LICENSE
+
+See CHANGELOG.md for changes.
