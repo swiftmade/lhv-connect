@@ -41,6 +41,7 @@ class Tag
     const END_TO_END_IDENTIFICATION = 'EndToEndId';
     const FINANCIAL_INSTITUTION_IDENTIFICATION = 'FinInstnId';
     const FROM_DATE = 'FrDt';
+    const FROM_TIME = 'FrTm';
     const FROM_TO_DATE = 'FrToDt';
     const FROM_TO_TIME = 'FrToTm';
     const GROUP_HEADER = 'GrpHdr';
