@@ -1,3 +1,12 @@
+2025-01-08  Swiftmade OÜ
+
+    Breaking changes:
+    * Minimum PHP version is now 8.1
+    
+    Other changes:
+    * Use Laravel locks to ensure only one LHV API call runs at a time.
+    * Implemented account balance and account statement functions.
+
 2024-12-26  Swiftmade OÜ
 
     Breaking changes:

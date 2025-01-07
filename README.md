@@ -6,10 +6,10 @@ LHV Connect:
  - [https://www.lhv.ee/en/connect](https://www.lhv.ee/en/connect)
 
 Supported PHP versions: 
-  - PHP 7.4+ or PHP 8.0+
+  - PHP 8.1+
 
 Supported Laravel versions:
-  - Laravel 7.x, 8.x, 9.x, 10.x, 11.x
+  - Laravel 8.x, 9.x, 10.x, 11.x
 
 ## Quickstart
 
