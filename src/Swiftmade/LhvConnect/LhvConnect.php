@@ -35,8 +35,10 @@ class LhvConnect
         return $this->client->get('/heartbeat');
     }
 
-    public function accountStatement()
+    public function getAccountStatement()
     {
+        AcctRptgReq
+        
         return $this->client->post('/account-statement');
     }
 

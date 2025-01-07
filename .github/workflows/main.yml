@@ -17,7 +17,7 @@ jobs:
         # Disable testing on windows for now...
         # os: [ubuntu-latest, windows-latest]
         os: [ubuntu-latest]
-        php: [7.4, 8.0, 8.1, 8.2, 8.3]
+        php: [8.0, 8.1, 8.2, 8.3]
         laravel: [7.*, 8.*, 9.*, 10.*, 11.*]
         #stability: [prefer-lowest, prefer-stable]
         stability: [prefer-stable]
@@ -33,14 +33,8 @@ jobs:
           - laravel: 7.*
             php: 8.3
           # Laravel 9 doesn't support < PHP 8
-          - laravel: 9.*
-            php: 7.4
-          - laravel: 10.*
-            php: 7.4
           - laravel: 10.*
             php: 8.0
-          - laravel: 11.*
-            php: 7.4
           - laravel: 11.*
             php: 8.0
           - laravel: 11.*
