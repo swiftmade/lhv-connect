@@ -11,7 +11,7 @@ use Swiftmade\LhvConnect\Xml\Tag;
  * It can be requested for one Customer Account at a time.
  * Balances are provided real-time on the moment of generating the response.
  */
-class AccountReportRequest extends AbstractRequest
+class AccountBalanceRequest extends AbstractRequest
 {
     protected string $requestedMessageNameIdentification = 'camt.052.001.06';
 
@@ -29,7 +29,7 @@ class AccountReportRequest extends AbstractRequest
 
     public function endpoint(): string
     {
-        return '/account-report';
+        return '/account-balance';
     }
 
     public function responseType(): string
@@ -68,7 +68,7 @@ class AccountReportRequest extends AbstractRequest
                                 Tag::FROM_TIME => $this->fromDate->format('H:i:sP'),
                                 Tag::TO_TIME => $this->toDate->format('H:i:sP')
                             ],
-                            //                            Tag::TYPE => 'ALLL'
+                            Tag::TYPE => 'ALLL'
                         ],
                     ],
                 ]

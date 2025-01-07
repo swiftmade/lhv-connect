@@ -11,7 +11,7 @@ use DateTime;
  * This request shape is identical to the AccountReportRequest, except for the requestedMessageNameIdentification.
  * @see AccountReportRequest.php
  */
-final class AccountStatementRequest extends AccountReportRequest
+final class AccountStatementRequest extends AccountBalanceRequest
 {
     protected string $requestedMessageNameIdentification = 'camt.053.001.02';
 
