@@ -6,10 +6,10 @@ LHV Connect:
  - [https://www.lhv.ee/en/connect](https://www.lhv.ee/en/connect)
 
 Supported PHP versions: 
-  - PHP 7.4+ or PHP 8.0+
+  - PHP 8.1+
 
 Supported Laravel versions:
-  - Laravel 7.x, 8.x, 9.x, 10.x, 11.x
+  - Laravel 8.x, 9.x, 10.x, 11.x
 
 ## Quickstart
 
@@ -19,34 +19,44 @@ NB! Service provider Swiftmade\LhvConnect\LhvConnectServiceProvider::class is au
 
 In terminal run
 
-    $ php artisan vendor:publish
+    $ php artisan vendor:publish --provider="Swiftmade\LhvConnect\LhvConnectServiceProvider"
 
 Open file config/lhv-connect.php and fill out the config. You can fill in info about several bank accounts and certifications.
 
-Now you can create new LhvConnect object. The Config::get parameter lhv-connect.test means that the file lhv-connect.php
-and the array with the key 'test' is passed on.
 
-    $lhv = new LhvConnect(Config::get('lhv-connect.test'));
+## Usage
 
-Test the connection. If there's no connection, Exception with 503 should be thrown.
+```php
 
-    $lhv->sendHeartbeat();
+use Swiftmade\LhvConnect\LhvConnect;
 
-Retrieve a message from LHV inbox
+$lhv = LhvConnect::make('sandbox'); // sandbox is a key under lhv-connect.accounts
 
-    $message = $lhv->makeRetrieveMessageFromInboxRequest();
+$lhv->sendHeartbeat(); // test connection
 
-Delete the message from LHV inbox
+$lhv->getAccountBalance(); // get account balance
 
-    $lhv->makeDeleteMessageInInboxRequest($message);
+$lhv->getAccountStatement(new DateTime('2024-01-01'), new DateTime('2024-01-31')); // get account statement
 
-Retrieve all messages. This gets you all the messages but it also deletes all the messages from the inbox.
+```
 
-    $messages = $lhv->getAllMessages();
+### Error Handling
 
----
+The package will throw exceptions in the following cases:
+- Invalid configuration
+- API errors (LhvApiError)
+- Connection issues
+- Request timeout
+
+### Notes
+
+- The package uses a locking mechanism to handle LHV Connect's asynchronous responses
+- Default timeout for requests is 2 seconds
+- Requests use exponential backoff for retries
 
 ### Acknowledgements
 
-Based on original package by Mihkel Allorg released under MIT license.
+This is a fork of Mihkel Allorg's package released under MIT license.
 https://github.com/mihkelallorg/lhv-connect/blob/master/LICENSE
+
+See CHANGELOG.md for changes.
