@@ -29,7 +29,7 @@
         "illuminate/support": "^8.0|^9.0|^10.0|^11.0",
         "illuminate/cache": "^8.0|^9.0|^10.0|^11.0",
         "spatie/array-to-xml": "^3.4",
-        "mtownsend/xml-to-array": "^2.0"
+        "vyuldashev/xml-to-array": "^1.1"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.1",

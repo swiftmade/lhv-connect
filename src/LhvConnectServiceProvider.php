@@ -16,7 +16,8 @@ class LhvConnectServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../config/lhv-connect.php', 'lhv-connect'
+            __DIR__ . '/../config/lhv-connect.php',
+            'lhv-connect'
         );
     }
 

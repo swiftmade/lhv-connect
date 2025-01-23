@@ -10,7 +10,7 @@ use RuntimeException;
 use Swiftmade\LhvConnect\Requests\AbstractRequest;
 use Swiftmade\LhvConnect\Requests\AccountBalanceRequest;
 use Swiftmade\LhvConnect\Requests\AccountStatementRequest;
-use Mtownsend\XmlToArray\XmlToArray;
+use Vyuldashev\XmlToArray\XmlToArray;
 
 class LhvConnect
 {
