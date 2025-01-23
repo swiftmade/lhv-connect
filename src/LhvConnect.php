@@ -6,7 +6,6 @@ use DateTime;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Log;
 use RuntimeException;
 use Swiftmade\LhvConnect\Requests\AbstractRequest;
 use Swiftmade\LhvConnect\Requests\AccountBalanceRequest;
@@ -119,14 +118,12 @@ class LhvConnect
                     continue;
                 }
 
-                $contents = $messageResponse->getBody()->getContents();
+                $rawResponse = $messageResponse->getBody()->getContents();
+                $response = XmlToArray::convert($rawResponse);
 
-                $response = XmlToArray::convert($contents);
-
-                if (isset($response['Error'])) {
+                if (isset($response['Errors'])) {
                     throw new LhvApiError(
-                        $response['Error']['Description'],
-                        $response['Error']['Code']
+                        $response['Errors']['Error']['Code'] . ' - ' . $response['Errors']['Error']['Description'],
                     );
                 }
 
