@@ -121,10 +121,9 @@ class LhvConnect
                 $rawResponse = $messageResponse->getBody()->getContents();
                 $response = XmlToArray::convert($rawResponse);
 
-                if (isset($response['Errors'])) {
+                if (isset($response['Error'])) {
                     throw new LhvApiError(
-                        $response['Errors'][0]['Error']['Description'],
-                        $response['Errors'][0]['Error']['Code']
+                        $response['Error']['Code'] . ' - ' . $response['Error']['Description'],
                     );
                 }
 
