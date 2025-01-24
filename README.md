@@ -6,30 +6,30 @@
     <img src="https://img.shields.io/packagist/php-v/swiftmade/lhv-connect.svg" alt="PHP Version">
 </p>
 
-A robust Laravel package for integrating with LHV Connect API. Simplify your banking operations with easy-to-use methods for account statements, balance inquiries, and more.
+A Laravel integration package for LHV Connect API, providing secure banking operations for Estonian businesses. This package handles the complexities of LHV's API communication, certificate management, and response handling.
 
-## 🚀 Features
+## Features
 
-- 🏦 Account balance inquiries
-- 📊 Account statements
-- 🔒 Secure communication with LHV Connect API
-- ⚡️ Asynchronous request handling
-- 🛡️ Built-in error handling and retries
-- 🧪 Sandbox environment support
+- Account balance inquiries
+- Account statements
+- Secure certificate-based authentication
+- Automatic message handling and cleanup
+- Comprehensive error handling
+- Sandbox environment support
 
-## 📋 Requirements
+## Requirements
 
 - PHP 8.1 or higher
 - Laravel 8.x, 9.x, 10.x, 11.x
-- Valid LHV Connect API credentials
+- Valid LHV Connect API credentials and certificates
 
-## 📦 Installation
+## Installation
 
 ```bash
 composer require swiftmade/lhv-connect
 ```
 
-## ⚙️ Configuration
+## Configuration
 
 1. Publish the configuration file:
 
@@ -37,9 +37,28 @@ composer require swiftmade/lhv-connect
 php artisan vendor:publish --provider="Swiftmade\LhvConnect\LhvConnectServiceProvider"
 ```
 
-2. Configure your LHV Connect credentials in `config/lhv-connect.php`. You can set up multiple accounts (e.g., sandbox and production).
+2. Configure your credentials in `config/lhv-connect.php`:
+   - Set paths to your .p12 certificate files
+   - Configure certificate passwords
+   - Add your IBAN and account details
+   - Set up both sandbox and production environments as needed
 
-## 💻 Usage
+Example configuration:
+```php
+'sandbox' => [
+    'url' => 'https://connect.prelive.lhv.eu',
+    'cert' => [
+        'path' => '/path/to/cert.p12',
+        'password' => 'your-cert-password',
+    ],
+    'verify' => 'path_to_lhv_rootca.cer',
+    'IBAN' => 'EE123456789',
+    'name' => 'Company Name',
+    'bic' => 'LHVBEE22',
+],
+```
+
+## Usage
 
 ### Initialize the Client
 
@@ -69,7 +88,6 @@ $balance = $lhv->getAccountBalance('EE123456789');
 ### Get Account Statement
 
 ```php
-// Get statement for a date range
 $statement = $lhv->getAccountStatement(
     fromDate: new DateTime('2024-01-01'),
     toDate: new DateTime('2024-03-01')
@@ -83,41 +101,41 @@ $statement = $lhv->getAccountStatement(
 );
 ```
 
-## 🛡️ Error Handling
+## Error Handling
 
-The package includes comprehensive error handling for:
-- ❌ Invalid configuration
-- ❌ API errors (`LhvApiError`)
-- ❌ Connection issues
-- ❌ Request timeouts
+The package implements comprehensive error handling for:
+- Invalid configuration
+- API errors (LhvApiError)
+- Connection issues
+- Request timeouts
 
-## 🔍 Implementation Details
+## Technical Details
 
-- Uses a locking mechanism for handling asynchronous responses
+- Uses certificate-based authentication
+- Implements request locking mechanism
 - Default request timeout: 2 seconds
-- Implements exponential backoff for retries
-- Automatic message cleanup
+- Automatic retry mechanism with exponential backoff
+- Automatic cleanup of processed messages
 
-## 🤝 Contributing
+## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+Contributions are welcome. Please ensure your changes adhere to the following:
+- Follow PSR-12 coding standards
+- Add/update tests as needed
+- Document new features
 
-## 📝 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgements
+## Resources
 
-Based on the original package by [Mihkel Allorg](https://github.com/mihkelallorg/lhv-connect).
-
-## 📚 Resources
-
-- [LHV Connect Documentation](https://www.lhv.ee/en/connect)
+- [LHV Connect API Documentation](https://www.lhv.ee/en/connect)
 - [Changelog](CHANGELOG.md)
 - [Issue Tracker](https://github.com/swiftmade/lhv-connect/issues)
 
 ---
 
 <p align="center">
-Made with ❤️ for the Estonian developer community
+Developed and maintained by Swiftmade OÜ
 </p>
