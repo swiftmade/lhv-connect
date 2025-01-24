@@ -1,8 +1,4 @@
-╔══════════════════════════════════════════════════════════════════════════════╗
-║                                                                              ║
-║                              LHV Connect for Laravel                         ║
-║                                                                              ║
-╚══════════════════════════════════════════════════════════════════════════════╝
+# LHV Connect for Laravel
 
 <p align="center">
     <img src="https://img.shields.io/packagist/v/swiftmade/lhv-connect.svg" alt="Latest Stable Version">
