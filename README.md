@@ -1,62 +1,123 @@
-# LHV CONNECT API package for Laravel
+# LHV Connect for Laravel
 
-This package is a Laravel wrapper for the LHV Connect API.
+<p align="center">
+    <img src="https://img.shields.io/packagist/v/swiftmade/lhv-connect.svg" alt="Latest Stable Version">
+    <img src="https://img.shields.io/packagist/l/swiftmade/lhv-connect.svg" alt="License">
+    <img src="https://img.shields.io/packagist/php-v/swiftmade/lhv-connect.svg" alt="PHP Version">
+</p>
 
-LHV Connect:
- - [https://www.lhv.ee/en/connect](https://www.lhv.ee/en/connect)
+A robust Laravel package for integrating with LHV Connect API. Simplify your banking operations with easy-to-use methods for account statements, balance inquiries, and more.
 
-Supported PHP versions: 
-  - PHP 8.1+
+## 🚀 Features
 
-Supported Laravel versions:
-  - Laravel 8.x, 9.x, 10.x, 11.x
+- 🏦 Account balance inquiries
+- 📊 Account statements
+- 🔒 Secure communication with LHV Connect API
+- ⚡️ Asynchronous request handling
+- 🛡️ Built-in error handling and retries
+- 🧪 Sandbox environment support
 
-## Quickstart
+## 📋 Requirements
 
-    $ composer require swiftmade/lhv-connect
+- PHP 8.1 or higher
+- Laravel 8.x, 9.x, 10.x, 11.x
+- Valid LHV Connect API credentials
 
-NB! Service provider Swiftmade\LhvConnect\LhvConnectServiceProvider::class is automatically registered.
+## 📦 Installation
 
-In terminal run
-
-    $ php artisan vendor:publish --provider="Swiftmade\LhvConnect\LhvConnectServiceProvider"
-
-Open file config/lhv-connect.php and fill out the config. You can fill in info about several bank accounts and certifications.
-
-
-## Usage
-
-```php
-
-use Swiftmade\LhvConnect\LhvConnect;
-
-$lhv = LhvConnect::make('sandbox'); // sandbox is a key under lhv-connect.accounts
-
-$lhv->sendHeartbeat(); // test connection
-
-$lhv->getAccountBalance(); // get account balance
-
-$lhv->getAccountStatement(new DateTime('2024-01-01'), new DateTime('2024-01-31')); // get account statement
-
+```bash
+composer require swiftmade/lhv-connect
 ```
 
-### Error Handling
+## ⚙️ Configuration
 
-The package will throw exceptions in the following cases:
-- Invalid configuration
-- API errors (LhvApiError)
-- Connection issues
-- Request timeout
+1. Publish the configuration file:
 
-### Notes
+```bash
+php artisan vendor:publish --provider="Swiftmade\LhvConnect\LhvConnectServiceProvider"
+```
 
-- The package uses a locking mechanism to handle LHV Connect's asynchronous responses
-- Default timeout for requests is 2 seconds
-- Requests use exponential backoff for retries
+2. Configure your LHV Connect credentials in `config/lhv-connect.php`. You can set up multiple accounts (e.g., sandbox and production).
 
-### Acknowledgements
+## 💻 Usage
 
-This is a fork of Mihkel Allorg's package released under MIT license.
-https://github.com/mihkelallorg/lhv-connect/blob/master/LICENSE
+### Initialize the Client
 
-See CHANGELOG.md for changes.
+```php
+use Swiftmade\LhvConnect\LhvConnect;
+
+// Connect to sandbox or production
+$lhv = LhvConnect::make('sandbox');
+```
+
+### Test Connection
+
+```php
+$lhv->sendHeartbeat();
+```
+
+### Get Account Balance
+
+```php
+// Get balance for default IBAN
+$balance = $lhv->getAccountBalance();
+
+// Or specify an IBAN
+$balance = $lhv->getAccountBalance('EE123456789');
+```
+
+### Get Account Statement
+
+```php
+// Get statement for a date range
+$statement = $lhv->getAccountStatement(
+    fromDate: new DateTime('2024-01-01'),
+    toDate: new DateTime('2024-03-01')
+);
+
+// Or include a specific IBAN
+$statement = $lhv->getAccountStatement(
+    fromDate: new DateTime('2024-01-01'),
+    toDate: new DateTime('2024-03-01'),
+    accountIban: 'EE123456789'
+);
+```
+
+## 🛡️ Error Handling
+
+The package includes comprehensive error handling for:
+- ❌ Invalid configuration
+- ❌ API errors (`LhvApiError`)
+- ❌ Connection issues
+- ❌ Request timeouts
+
+## 🔍 Implementation Details
+
+- Uses a locking mechanism for handling asynchronous responses
+- Default request timeout: 2 seconds
+- Implements exponential backoff for retries
+- Automatic message cleanup
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgements
+
+Based on the original package by [Mihkel Allorg](https://github.com/mihkelallorg/lhv-connect).
+
+## 📚 Resources
+
+- [LHV Connect Documentation](https://www.lhv.ee/en/connect)
+- [Changelog](CHANGELOG.md)
+- [Issue Tracker](https://github.com/swiftmade/lhv-connect/issues)
+
+---
+
+<p align="center">
+Made with ❤️ for the Estonian developer community
+</p>
