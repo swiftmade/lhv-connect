@@ -1,62 +1,145 @@
-# LHV CONNECT API package for Laravel
+# LHV Connect for Laravel
 
-This package is a Laravel wrapper for the LHV Connect API.
+<p align="center">
+    <img src="https://img.shields.io/packagist/v/swiftmade/lhv-connect.svg" alt="Latest Stable Version">
+    <img src="https://img.shields.io/packagist/l/swiftmade/lhv-connect.svg" alt="License">
+    <img src="https://img.shields.io/packagist/php-v/swiftmade/lhv-connect.svg" alt="PHP Version">
+</p>
 
-LHV Connect:
- - [https://www.lhv.ee/en/connect](https://www.lhv.ee/en/connect)
+⚠️ **Warning**: This package is under active development and may receive breaking changes between minor versions until it reaches v1.0. Please pin your dependency to a specific version.
 
-Supported PHP versions: 
-  - PHP 8.1+
+> **Legal Disclaimer**: This is a third-party integration package. It is not officially endorsed, sponsored, affiliated with or otherwise authorized by AS LHV Pank. All product and company names are trademarks™ or registered® trademarks of their respective holders.
 
-Supported Laravel versions:
-  - Laravel 8.x, 9.x, 10.x, 11.x
+A Laravel integration package for LHV Connect API, providing secure banking operations for Estonian businesses. This package handles the complexities of LHV's API communication, certificate management, and response handling.
 
-## Quickstart
+## Features
 
-    $ composer require swiftmade/lhv-connect
+- Account balance inquiries
+- Account statements
+- Secure certificate-based authentication
+- Automatic message handling and cleanup
+- Comprehensive error handling
+- Sandbox environment support
 
-NB! Service provider Swiftmade\LhvConnect\LhvConnectServiceProvider::class is automatically registered.
+## Requirements
 
-In terminal run
+- PHP 8.1 or higher
+- Laravel 8.x, 9.x, 10.x, 11.x
+- Valid LHV Connect API credentials and certificates
 
-    $ php artisan vendor:publish --provider="Swiftmade\LhvConnect\LhvConnectServiceProvider"
+## Installation
 
-Open file config/lhv-connect.php and fill out the config. You can fill in info about several bank accounts and certifications.
+```bash
+composer require swiftmade/lhv-connect
+```
 
+## Configuration
+
+1. Publish the configuration file:
+
+```bash
+php artisan vendor:publish --provider="Swiftmade\LhvConnect\LhvConnectServiceProvider"
+```
+
+2. Configure your credentials in `config/lhv-connect.php`:
+   - Set paths to your .p12 certificate files
+   - Configure certificate passwords
+   - Add your IBAN and account details
+   - Set up both sandbox and production environments as needed
+
+Example configuration:
+```php
+'sandbox' => [
+    'url' => 'https://connect.prelive.lhv.eu',
+    'cert' => [
+        'path' => '/path/to/cert.p12',
+        'password' => 'your-cert-password',
+    ],
+    'verify' => 'path_to_lhv_rootca.cer',
+    'IBAN' => 'EE123456789',
+    'name' => 'Company Name',
+    'bic' => 'LHVBEE22',
+],
+```
 
 ## Usage
 
-```php
+### Initialize the Client
 
+```php
 use Swiftmade\LhvConnect\LhvConnect;
 
-$lhv = LhvConnect::make('sandbox'); // sandbox is a key under lhv-connect.accounts
-
-$lhv->sendHeartbeat(); // test connection
-
-$lhv->getAccountBalance(); // get account balance
-
-$lhv->getAccountStatement(new DateTime('2024-01-01'), new DateTime('2024-01-31')); // get account statement
-
+// Connect to sandbox or production
+$lhv = LhvConnect::make('sandbox');
 ```
 
-### Error Handling
+### Test Connection
 
-The package will throw exceptions in the following cases:
+```php
+$lhv->sendHeartbeat();
+```
+
+### Get Account Balance
+
+```php
+// Get balance for default IBAN
+$balance = $lhv->getAccountBalance();
+
+// Or specify an IBAN
+$balance = $lhv->getAccountBalance('EE123456789');
+```
+
+### Get Account Statement
+
+```php
+$statement = $lhv->getAccountStatement(
+    fromDate: new DateTime('2024-01-01'),
+    toDate: new DateTime('2024-03-01')
+);
+
+// Or include a specific IBAN
+$statement = $lhv->getAccountStatement(
+    fromDate: new DateTime('2024-01-01'),
+    toDate: new DateTime('2024-03-01'),
+    accountIban: 'EE123456789'
+);
+```
+
+## Error Handling
+
+The package implements comprehensive error handling for:
 - Invalid configuration
 - API errors (LhvApiError)
 - Connection issues
-- Request timeout
+- Request timeouts
 
-### Notes
+## Technical Details
 
-- The package uses a locking mechanism to handle LHV Connect's asynchronous responses
-- Default timeout for requests is 2 seconds
-- Requests use exponential backoff for retries
+- Uses certificate-based authentication
+- Implements request locking mechanism
+- Default request timeout: 2 seconds
+- Automatic retry mechanism with exponential backoff
+- Automatic cleanup of processed messages
 
-### Acknowledgements
+## Contributing
 
-This is a fork of Mihkel Allorg's package released under MIT license.
-https://github.com/mihkelallorg/lhv-connect/blob/master/LICENSE
+Contributions are welcome. Please ensure your changes adhere to the following:
+- Follow PSR-12 coding standards
+- Add/update tests as needed
+- Document new features
 
-See CHANGELOG.md for changes.
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Resources
+
+- [LHV Connect API Documentation](https://www.lhv.ee/en/connect)
+- [Changelog](CHANGELOG.md)
+- [Issue Tracker](https://github.com/swiftmade/lhv-connect/issues)
+
+---
+
+<p align="center">
+Developed and maintained by Swiftmade OÜ
+</p>
