@@ -6,6 +6,8 @@
     <img src="https://img.shields.io/packagist/php-v/swiftmade/lhv-connect.svg" alt="PHP Version">
 </p>
 
+⚠️ **Warning**: This package is under active development and may receive breaking changes between minor versions until it reaches v1.0. Please pin your dependency to a specific version.
+
 > **Legal Disclaimer**: This is a third-party integration package. It is not officially endorsed, sponsored, affiliated with or otherwise authorized by AS LHV Pank. All product and company names are trademarks™ or registered® trademarks of their respective holders.
 
 A Laravel integration package for LHV Connect API, providing secure banking operations for Estonian businesses. This package handles the complexities of LHV's API communication, certificate management, and response handling.
