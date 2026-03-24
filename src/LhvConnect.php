@@ -75,7 +75,7 @@ class LhvConnect
             }
 
             $retries = 0;
-            $maxRetries = 5;
+            $maxRetries = $this->configuration['max_retries'] ?? 10;
 
             while (true) {
                 if (++$retries === $maxRetries) {
