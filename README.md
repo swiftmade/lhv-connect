@@ -50,7 +50,7 @@ php artisan vendor:publish --provider="Swiftmade\LhvConnect\LhvConnectServicePro
 Example configuration:
 ```php
 'sandbox' => [
-    'url' => 'https://connect.prelive.lhv.eu',
+    'url' => 'https://connect.test.lhv.eu',
     'cert' => [
         'path' => '/path/to/cert.p12',
         'password' => 'your-cert-password',

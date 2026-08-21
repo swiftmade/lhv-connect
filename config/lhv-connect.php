@@ -4,7 +4,7 @@ return [
     'tmp_folder' => '/tmp',
     'accounts' => [
         'sandbox' => [
-            'url' => 'https://connect.prelive.lhv.eu',
+            'url' => 'https://connect.test.lhv.eu',
             'cert' => [
                 // Path to your .p12 file (private key + LHV public certificate)
                 'path' => '',

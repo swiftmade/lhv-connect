@@ -24,7 +24,7 @@ class LhvConnectTest extends TestCase
         $handlerStack = HandlerStack::create($mock);
 
         $connect = new LhvConnect([
-            'url' => 'https://connect.prelive.lhv.eu',
+            'url' => 'https://connect.test.lhv.eu',
             'cert' => [
                 'path' => __DIR__ . '/test_cert.p12',
                 'password' => 'changeit',
@@ -60,7 +60,7 @@ class LhvConnectTest extends TestCase
         $handlerStack = HandlerStack::create($mock);
 
         $connect = new LhvConnect([
-            'url' => 'https://connect.prelive.lhv.eu',
+            'url' => 'https://connect.test.lhv.eu',
             'cert' => [
                 'path' => __DIR__ . '/test_cert.p12',
                 'password' => 'changeit',
