@@ -132,7 +132,7 @@ class LhvConnect
         });
     }
 
-    public function getAccountStatement(DateTime $fromDate, DateTime $toDate, string $accountIban = null)
+    public function getAccountStatement(DateTime $fromDate, DateTime $toDate, ?string $accountIban = null)
     {
         if (is_null($accountIban)) {
             $accountIban = $this->configuration['IBAN'];
@@ -151,7 +151,7 @@ class LhvConnect
         return $this->runRequest($request);
     }
 
-    public function getAccountBalance(string $accountIban = null)
+    public function getAccountBalance(?string $accountIban = null)
     {
         if (is_null($accountIban)) {
             $accountIban = $this->configuration['IBAN'];

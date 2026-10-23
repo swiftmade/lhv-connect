@@ -53,17 +53,6 @@
         }
     },
     "scripts": {
-        "post-autoload-dump": [
-            "@clear",
-            "@prepare"
-        ],
-        "serve": [
-            "Composer\\Config::disableProcessTimeout",
-            "@build"
-        ],
-        "test": [
-            "@clear",
-            "@php vendor/bin/phpunit"
-        ]
+        "test": "@php vendor/bin/phpunit"
     }
 }
